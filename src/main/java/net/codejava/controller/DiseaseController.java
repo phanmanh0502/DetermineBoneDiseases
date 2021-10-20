@@ -1,5 +1,7 @@
 package net.codejava.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +20,9 @@ public class DiseaseController {
 	private DiseaseService diseaseService;
 	
 	@RequestMapping("/disease")
-	public String viewHomePage() {
+	public String viewHomePage(Model model) {
+		List<Disease> listDeseases = diseaseService.listAll();
+		model.addAttribute("listDiseases", listDeseases);
 		return "disease/disease";
 	}
 	
@@ -31,21 +35,21 @@ public class DiseaseController {
 	
 	@RequestMapping(value = "/disease_save", method = RequestMethod.POST)
 	public String saveDisease(@ModelAttribute("disease") Disease disease) {
-//		diseaseService.save(disease);
+		diseaseService.save(disease);
 		return "redirect:/disease";
 	}
 	
-	@RequestMapping("/edit/{id}")
+	@RequestMapping("/disease_edit/{id}")
 	public ModelAndView showEditDiseasePage(@PathVariable(name = "id") int id) {
 		ModelAndView mav = new ModelAndView("disease_edit");
-//		Disease disease = diseaseService.get(id);
-//		mav.addObject("disease", disease);
+		Disease disease = diseaseService.get(id);
+		mav.addObject("disease", disease);
 		return mav;
 	}
 	
-	@RequestMapping("/delete/{id}")
+	@RequestMapping("/disease_delete/{id}")
 	public String deleteDisease(@PathVariable(name = "id") int id) {
-//		diseaseService.delete(id);
+		diseaseService.delete(id);
 		return "redirect:/disease";		
 	}
 }

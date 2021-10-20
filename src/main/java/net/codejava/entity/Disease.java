@@ -1,14 +1,36 @@
 package net.codejava.entity;
 
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+@Entity
+@Table(name = "disease")
 public class Disease {
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(name = "name")
 	private String name; // tên bệnh
 	
+	@Column(name = "cure_method")
 	private String cureMedthod; // phương pháp chữa bệnh
 	
+	@Transient
 	private double percentage; // tỷ lệ phần trăm mắc bệnh
-
+	
+	@OneToMany(mappedBy = "disease")
+	private List<Weight> listWeight;
+	
 	public int getId() {
 		return id;
 	}
@@ -17,11 +39,11 @@ public class Disease {
 		this.id = id;
 	}
 
-	public String getDiseaseString() {
+	public String getName() {
 		return name;
 	}
 
-	public void setDiseaseString(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
@@ -41,17 +63,26 @@ public class Disease {
 		this.percentage = percentage;
 	}
 
-	public Disease(int id, String name, String cureMedthod, double percentage) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.cureMedthod = cureMedthod;
-		this.percentage = percentage;
+	
+	public List<Weight> getListWeight() {
+		return listWeight;
+	}
+
+	public void setListWeight(List<Weight> listWeight) {
+		this.listWeight = listWeight;
 	}
 
 	public Disease() {
 		super();
 	}
-	
-	
+
+	public Disease(int id, String name, String cureMedthod, double percentage, List<Weight> listWeight) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.cureMedthod = cureMedthod;
+		this.percentage = percentage;
+		this.listWeight = listWeight;
+	}
+
 }
