@@ -1,5 +1,9 @@
 package net.codejava.repository;
 
-public interface SymptomRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import net.codejava.entity.Symptom;
+
+public interface SymptomRepository extends JpaRepository<Symptom, Long>{
 
 }
