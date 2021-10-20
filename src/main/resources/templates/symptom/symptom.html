@@ -9,9 +9,30 @@
 </head>
 <body>
 	<div layout:fragment="content">
-		<center>
+		<div align="center">
 			<h3>Quản lý triệu chứng</h3>
-		</center>
+			<a href="symptom_new">Tạo triệu chứng</a> <br /> <br />
+			<table border="1" cellpadding="10">
+				<thead>
+					<tr>
+						<th>ID triệu chứng</th>
+						<th>Tên triệu chứng</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="symptom : ${listSymptoms}">
+						<td th:text="${symptom.id}">ID trọng số</td>
+						<td th:text="${symptom.name}">Tên bệnh</td>
+						<td>
+							<a th:href="@{'/symptom_edit/' + ${symptom.id}}">Edit</a>
+							&nbsp;&nbsp;&nbsp; 
+							<a th:href="@{'/symptom_delete/' + ${symptom.id}}">Delete</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </body>
 </html>

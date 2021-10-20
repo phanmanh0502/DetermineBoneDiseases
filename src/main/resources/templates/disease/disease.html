@@ -9,9 +9,32 @@
 </head>
 <body>
 	<div layout:fragment="content">
-		<center>
+		<div align="center">
 			<h3>Quản lý bệnh và cách chữa trị</h3>
-		</center>
+			<a href="disease_new">Tạo bệnh và cách chữa trị</a> <br /> <br />
+			<table border="1" cellpadding="10">
+				<thead>
+					<tr>
+						<th>ID bệnh</th>
+						<th>Tên bệnh</th>
+						<th>Phương pháp chữa bệnh</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="disease : ${listDiseases}">
+						<td th:text="${disease.id}">ID trọng số</td>
+						<td th:text="${disease.name}">Tên bệnh</td>
+						<td th:text="${disease.cureMedthod}">Tên triệu chứng</td>
+						<td>
+							<a th:href="@{'/disease_edit/' + ${disease.id}}">Edit</a>
+							&nbsp;&nbsp;&nbsp; 
+							<a th:href="@{'/disease_delete/' + ${disease.id}}">Delete</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </body>
 </html>
