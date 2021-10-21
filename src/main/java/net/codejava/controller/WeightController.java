@@ -35,6 +35,7 @@ public class WeightController {
 	}
 
 	@RequestMapping(value = "/weight_save", method = RequestMethod.POST)
+	// đang lỗi ở đoạn không lấy được số double mà chỉ lấy được số int
 	public String saveWeight(@ModelAttribute("weight") Weight weight) {
 		weightService.save(weight);
 		return "redirect:/weight";

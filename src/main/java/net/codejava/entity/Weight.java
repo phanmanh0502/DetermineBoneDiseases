@@ -20,12 +20,18 @@ public class Weight {
 	@Column(name = "weight")
 	private double weight; // trọng số của triệu chứng đối với bệnh
 
-	@ManyToOne
-    @JoinColumn(name = "id_symptom")
-	private Symptom symptom;
+	@Column(name = "id_symptom")
+	private Integer idSymptom;
 	
 	@ManyToOne
-    @JoinColumn(name = "id_disease")
+    @JoinColumn(name = "id_symptom", insertable=false, updatable=false)
+	private Symptom symptom;
+	
+	@Column(name = "id_disease")
+	private Integer idDisease;
+	
+	@ManyToOne
+    @JoinColumn(name = "id_disease", insertable=false, updatable=false)
 	private Disease disease;
 	
 	public Integer getId() {
@@ -60,6 +66,40 @@ public class Weight {
 		this.disease = disease;
 	}
 
+	public Integer getIdSymptom() {
+		return idSymptom;
+	}
+
+	public void setIdSymptom(Integer idSymptom) {
+		this.idSymptom = idSymptom;
+	}
+
+	public Integer getIdDisease() {
+		return idDisease;
+	}
+
+	public void setIdDisease(Integer idDisease) {
+		this.idDisease = idDisease;
+	}
+
+	public Weight(Integer id, double weight, Integer idSymptom, Symptom symptom, Integer idDisease, Disease disease) {
+		super();
+		this.id = id;
+		this.weight = weight;
+		this.idSymptom = idSymptom;
+		this.symptom = symptom;
+		this.idDisease = idDisease;
+		this.disease = disease;
+	}
+
+	public Weight(Integer id, double weight, Integer idSymptom, Integer idDisease) {
+		super();
+		this.id = id;
+		this.weight = weight;
+		this.idSymptom = idSymptom;
+		this.idDisease = idDisease;
+	}
+
 	public Weight(Integer id, double weight, Symptom symptom, Disease disease) {
 		super();
 		this.id = id;
@@ -72,47 +112,4 @@ public class Weight {
 		super();
 	}
 	
-	
-//	@Column(name = "id_disease")
-//	private int idDisease; // id bệnh
-//	
-//	private String diseaseName; // tên bệnh
-//	
-//	@Column(name = "id_symptom")
-//	private int idSymptom; // id triệu chứng
-//	
-//	private String symptomName; // tên triệu chứng
-//	
-//	public int getIdDisease() {
-//	return idDisease;
-//}
-//
-//public void setIdDisease(int idDisease) {
-//	this.idDisease = idDisease;
-//}
-//
-//public int getIdSymptom() {
-//	return idSymptom;
-//}
-//
-//public void setIdSymptom(int idSymptom) {
-//	this.idSymptom = idSymptom;
-//}
-//	
-//	public String getDiseaseName() {
-//		return diseaseName;
-//	}
-//
-//	public void setDiseaseName(String diseaseName) {
-//		this.diseaseName = diseaseName;
-//	}
-//
-//	public String getSymptomName() {
-//		return symptomName;
-//	}
-//
-//	public void setSymptomName(String symptomName) {
-//		this.symptomName = symptomName;
-//	}
-
 }
