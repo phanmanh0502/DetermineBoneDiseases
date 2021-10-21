@@ -37,10 +37,11 @@ public class WeightController {
 	@RequestMapping(value = "/weight_save", method = RequestMethod.POST)
 	public String saveWeight(@ModelAttribute("weight") Weight weight) {
 		weightService.save(weight);
-		return "redirect:/weight/weight";
+		return "redirect:/weight";
 	}
 
 	@RequestMapping("/weight_edit/{id}")
+//	controller này vẫn đang bị lỗi
 	public ModelAndView showEditWeightPage(@PathVariable(name = "id") String id) {
 		ModelAndView mav = new ModelAndView("weight/weight_edit");
 		Weight weight = weightService.get(Integer.valueOf(id));
@@ -51,6 +52,6 @@ public class WeightController {
 	@RequestMapping("/weight_delete/{id}")
 	public String deleteWeight(@PathVariable(name = "id") String id) {
 		weightService.delete(Integer.valueOf(id));
-		return "redirect:/weight/weight";
+		return "redirect:/weight";
 	}
 }

@@ -36,10 +36,11 @@ public class SymptomController {
 	@RequestMapping(value = "/symptom_save", method = RequestMethod.POST)
 	public String saveSymptom(@ModelAttribute("symptom") Symptom symptom) {
 		symptomService.save(symptom);
-		return "redirect:/symptom/symptom";
+		return "redirect:/symptom";
 	}
 
 	@RequestMapping("/symptom_edit/{id}")
+//	controller này vẫn đang bị lỗi
 	public ModelAndView showEditSymptomPage(@PathVariable(name = "id") String id) {
 		ModelAndView mav = new ModelAndView("symptom/symptom_edit");
 		Symptom symptom = symptomService.get(Integer.valueOf(id));
@@ -51,7 +52,7 @@ public class SymptomController {
 	public String deleteSymptom(@PathVariable(name = "id") String id) {
 		symptomService.delete(Integer.valueOf(id));
 		// phần xóa này Đức nhớ xóa cả các weight join với bảng này nhé
-		return "redirect:/symptom/symptom";
+		return "redirect:/symptom";
 	}
 
 	// controller cho phần load trọng số nó join
@@ -60,6 +61,6 @@ public class SymptomController {
 	@RequestMapping("/symptom_view_weight/{id}")
 	public String loadWeightBySymptom(@PathVariable(name = "id") String id) {
 		// xử lý ở đây
-		return "redirect:/weight/weight";
+		return "redirect:/weight";
 	}
 }
