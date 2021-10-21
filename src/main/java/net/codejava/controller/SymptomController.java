@@ -52,6 +52,7 @@ public class SymptomController {
 	public String deleteSymptom(@PathVariable(name = "id") String id) {
 		symptomService.delete(Integer.valueOf(id));
 		// phần xóa này Đức nhớ xóa cả các weight join với bảng này nhé
+		// phần này nó đang join nhau nên không thể xóa được
 		return "redirect:/symptom";
 	}
 

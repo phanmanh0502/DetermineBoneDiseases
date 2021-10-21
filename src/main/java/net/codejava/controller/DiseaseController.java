@@ -52,6 +52,7 @@ public class DiseaseController {
 	public String deleteDisease(@PathVariable(name = "id") String id) {
 		diseaseService.delete(Integer.valueOf(id));
 		// phần xóa này Đức nhớ xóa cả các weight join với bảng này nhé
+		// phần này nó đang join nhau nên không thể xóa được
 		return "redirect:/disease";
 	}
 
