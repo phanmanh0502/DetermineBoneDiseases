@@ -30,26 +30,35 @@ public class DiseaseController {
 	public String showNewDiseasePage(Model model) {
 		Disease disease = new Disease();
 		model.addAttribute("disease", disease);
-		return "disease_new";
+		return "disease/disease_new";
 	}
 	
 	@RequestMapping(value = "/disease_save", method = RequestMethod.POST)
 	public String saveDisease(@ModelAttribute("disease") Disease disease) {
 		diseaseService.save(disease);
-		return "redirect:/disease";
+		return "redirect:/disease/disease";
 	}
 	
 	@RequestMapping("/disease_edit/{id}")
-	public ModelAndView showEditDiseasePage(@PathVariable(name = "id") int id) {
-		ModelAndView mav = new ModelAndView("disease_edit");
-		Disease disease = diseaseService.get(id);
+	public ModelAndView showEditDiseasePage(@PathVariable(name = "id") String id) {
+		ModelAndView mav = new ModelAndView("disease/disease_edit");
+		Disease disease = diseaseService.get(Integer.valueOf(id));
 		mav.addObject("disease", disease);
 		return mav;
 	}
 	
 	@RequestMapping("/disease_delete/{id}")
-	public String deleteDisease(@PathVariable(name = "id") int id) {
-		diseaseService.delete(id);
-		return "redirect:/disease";		
+	public String deleteDisease(@PathVariable(name = "id") String id) {
+		diseaseService.delete(Integer.valueOf(id));
+		// phần xóa này Đức nhớ xóa cả các triệu chứng join với bảng này nhé
+		return "redirect:/disease/disease";		
+	}
+	
+	// controller cho phần load triệu chứng nó join, thì để tôi làm cái này
+	// ManhPV
+	@RequestMapping("/disease_view_weight/{id}")
+	public String loadWeightByDisease(@PathVariable(name = "id") String id) {
+		// xử lý ở đây
+		return "redirect:/weight/weight";		
 	}
 }

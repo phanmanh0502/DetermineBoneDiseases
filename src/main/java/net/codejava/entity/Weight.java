@@ -15,7 +15,7 @@ public class Weight {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@Column(name = "weight")
 	private double weight; // trọng số của triệu chứng đối với bệnh
@@ -28,11 +28,11 @@ public class Weight {
     @JoinColumn(name = "id_disease")
 	private Disease disease;
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -60,7 +60,7 @@ public class Weight {
 		this.disease = disease;
 	}
 
-	public Weight(int id, double weight, Symptom symptom, Disease disease) {
+	public Weight(Integer id, double weight, Symptom symptom, Disease disease) {
 		super();
 		this.id = id;
 		this.weight = weight;

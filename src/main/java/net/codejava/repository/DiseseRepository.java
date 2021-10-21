@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import net.codejava.entity.Disease;
 
-public interface DiseseRepository extends JpaRepository<Disease, Long>{
+public interface DiseseRepository extends JpaRepository<Disease, Integer>{
 
 }

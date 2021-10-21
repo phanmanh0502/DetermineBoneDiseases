@@ -1,3 +1,4 @@
+
 package net.codejava.controller;
 
 import java.util.List;
@@ -30,26 +31,26 @@ public class WeightController {
 	public String showNewWeightPage(Model model) {
 		Weight weight = new Weight();
 		model.addAttribute("weight", weight);
-		return "weight_new";
+		return "weight/weight_new";
 	}
 
 	@RequestMapping(value = "/weight_save", method = RequestMethod.POST)
 	public String saveWeight(@ModelAttribute("weight") Weight weight) {
 		weightService.save(weight);
-		return "redirect:/weight";
+		return "redirect:/weight/weight";
 	}
 
 	@RequestMapping("/weight_edit/{id}")
-	public ModelAndView showEditWeightPage(@PathVariable(name = "id") int id) {
-		ModelAndView mav = new ModelAndView("weight_edit");
-		Weight weight = weightService.get(id);
+	public ModelAndView showEditWeightPage(@PathVariable(name = "id") String id) {
+		ModelAndView mav = new ModelAndView("weight/weight_edit");
+		Weight weight = weightService.get(Integer.valueOf(id));
 		mav.addObject("weight", weight);
 		return mav;
 	}
 
 	@RequestMapping("/weight_delete/{id}")
-	public String deleteWeight(@PathVariable(name = "id") int id) {
-		weightService.delete(id);
-		return "redirect:/weight";
+	public String deleteWeight(@PathVariable(name = "id") String id) {
+		weightService.delete(Integer.valueOf(id));
+		return "redirect:/weight/weight";
 	}
 }

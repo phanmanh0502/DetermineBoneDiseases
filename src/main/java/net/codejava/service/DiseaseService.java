@@ -23,11 +23,11 @@ public class DiseaseService {
 		diseaseRepo.save(disease);
 	}
 	
-	public Disease get(long id) {
+	public Disease get(int id) {
 		return diseaseRepo.findById(id).get();
 	}
 	
-	public void delete(long id) {
+	public void delete(int id) {
 		diseaseRepo.deleteById(id);
 	}
 }

@@ -17,7 +17,7 @@ public class Symptom {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@Column(name = "name")
 	private String name; // tên triệu chứng
@@ -28,11 +28,11 @@ public class Symptom {
 	@OneToMany(mappedBy = "symptom")
 	List<Weight> listWeight;
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -64,7 +64,7 @@ public class Symptom {
 		super();
 	}
 
-	public Symptom(int id, String name, double similarity, List<Weight> listWeight) {
+	public Symptom(Integer id, String name, double similarity, List<Weight> listWeight) {
 		super();
 		this.id = id;
 		this.name = name;

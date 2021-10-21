@@ -23,11 +23,11 @@ public class SymptomService {
 		symptomRepo.save(symptom);
 	}
 	
-	public Symptom get(long id) {
+	public Symptom get(int id) {
 		return symptomRepo.findById(id).get();
 	}
 	
-	public void delete(long id) {
+	public void delete(int id) {
 		symptomRepo.deleteById(id);
 	}
 }

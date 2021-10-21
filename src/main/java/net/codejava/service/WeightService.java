@@ -23,11 +23,11 @@ public class WeightService {
 		weightRepo.save(weight);
 	}
 	
-	public Weight get(long id) {
+	public Weight get(int id) {
 		return weightRepo.findById(id).get();
 	}
 	
-	public void delete(long id) {
+	public void delete(int id) {
 		weightRepo.deleteById(id);
 	}
 }
