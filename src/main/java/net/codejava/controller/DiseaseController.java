@@ -50,12 +50,12 @@ public class DiseaseController {
 	@RequestMapping("/disease_delete/{id}")
 	public String deleteDisease(@PathVariable(name = "id") String id) {
 		diseaseService.delete(Integer.valueOf(id));
-		// phần xóa này Đức nhớ xóa cả các triệu chứng join với bảng này nhé
+		// phần xóa này Đức nhớ xóa cả các weight join với bảng này nhé
 		return "redirect:/disease/disease";
 	}
 
 	// controller cho phần load trọng số nó join
-	// phần này ông trả về cho tôi 1 list trọng số join theo bảng này nhé
+	// phần này ông trả về cho tôi 1 list weight join theo bảng này nhé
 	// đặt tên là listWeights
 	@RequestMapping("/disease_view_weight/{id}")
 	public String loadWeightByDisease(@PathVariable(name = "id") String id) {
