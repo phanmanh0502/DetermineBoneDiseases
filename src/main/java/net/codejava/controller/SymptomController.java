@@ -54,8 +54,9 @@ public class SymptomController {
 		return "redirect:/symptom/symptom";
 	}
 
-	// controller cho phần load triệu chứng nó join, thì để tôi làm cái này
-	// ManhPV
+	// controller cho phần load trọng số nó join
+	// phần này ông trả về cho tôi 1 list trọng số join theo bảng này nhé
+	// đặt tên là listWeights
 	@RequestMapping("/symptom_view_weight/{id}")
 	public String loadWeightBySymptom(@PathVariable(name = "id") String id) {
 		// xử lý ở đây
