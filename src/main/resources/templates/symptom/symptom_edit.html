@@ -12,6 +12,27 @@
 		<div align="center">
 			<h3>Sửa triệu chứng</h3>
 			<br /> <br />
+			<form action="#" th:action="@{/symptom_save}" th:object="${symptom}"
+						method="post">
+
+				<table border="0" cellpadding="10">
+					<tr>
+						<td>ID triệu chứng:</td>
+						<td>
+							<input type="text" th:field="*{id}" readonly="readonly" />
+						</td>
+					</tr>
+					<tr>
+						<td>Tên triệu chứng:</td>
+						<td>
+							<input type="text" th:field="*{name}" />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2"><button type="submit">Save</button> </td>
+					</tr>
+				</table>
+			</form>
 		</div>
 	</div>
 </body>

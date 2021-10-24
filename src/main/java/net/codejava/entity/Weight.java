@@ -18,7 +18,7 @@ public class Weight {
 	private Integer id;
 	
 	@Column(name = "weight")
-	private double weight; // trọng số của triệu chứng đối với bệnh
+	private double weightOfSymptom; // trọng số của triệu chứng đối với bệnh
 
 	@Column(name = "id_symptom")
 	private Integer idSymptom;
@@ -42,12 +42,12 @@ public class Weight {
 		this.id = id;
 	}
 
-	public double getWeight() {
-		return weight;
+	public double getWeightOfSymptom() {
+		return weightOfSymptom;
 	}
 
-	public void setWeight(double weight) {
-		this.weight = weight;
+	public void setWeightOfSymptom(double weightOfSymptom) {
+		this.weightOfSymptom = weightOfSymptom;
 	}
 	
 	public Symptom getSymptom() {
@@ -82,28 +82,28 @@ public class Weight {
 		this.idDisease = idDisease;
 	}
 
-	public Weight(Integer id, double weight, Integer idSymptom, Symptom symptom, Integer idDisease, Disease disease) {
+	public Weight(Integer id, double weightOfSymptom, Integer idSymptom, Symptom symptom, Integer idDisease, Disease disease) {
 		super();
 		this.id = id;
-		this.weight = weight;
+		this.weightOfSymptom = weightOfSymptom;
 		this.idSymptom = idSymptom;
 		this.symptom = symptom;
 		this.idDisease = idDisease;
 		this.disease = disease;
 	}
 
-	public Weight(Integer id, double weight, Integer idSymptom, Integer idDisease) {
+	public Weight(Integer id, double weightOfSymptom, Integer idSymptom, Integer idDisease) {
 		super();
 		this.id = id;
-		this.weight = weight;
+		this.weightOfSymptom = weightOfSymptom;
 		this.idSymptom = idSymptom;
 		this.idDisease = idDisease;
 	}
 
-	public Weight(Integer id, double weight, Symptom symptom, Disease disease) {
+	public Weight(Integer id, double weightOfSymptom, Symptom symptom, Disease disease) {
 		super();
 		this.id = id;
-		this.weight = weight;
+		this.weightOfSymptom = weightOfSymptom;
 		this.symptom = symptom;
 		this.disease = disease;
 	}

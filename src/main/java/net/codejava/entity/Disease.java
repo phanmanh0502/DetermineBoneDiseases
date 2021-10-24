@@ -2,6 +2,7 @@ package net.codejava.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ public class Disease {
 	@Transient
 	private double percentage; // tỷ lệ phần trăm mắc bệnh
 	
-	@OneToMany(mappedBy = "disease")
+	@OneToMany(mappedBy = "disease", cascade = CascadeType.ALL)
 	private List<Weight> listWeight;
 	
 	public Integer getId() {
@@ -74,6 +75,21 @@ public class Disease {
 
 	public Disease() {
 		super();
+	}
+
+	public Disease(Integer id, String name, String cureMedthod) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.cureMedthod = cureMedthod;
+	}
+
+	public Disease(Integer id, String name, String cureMedthod, double percentage) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.cureMedthod = cureMedthod;
+		this.percentage = percentage;
 	}
 
 	public Disease(Integer id, String name, String cureMedthod, double percentage, List<Weight> listWeight) {

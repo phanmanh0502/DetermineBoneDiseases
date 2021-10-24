@@ -22,8 +22,8 @@
 				</thead>
 				<tbody>
 					<tr th:each="symptom : ${listSymptoms}">
-						<td th:text="${symptom.id}">ID trọng số</td>
-						<td th:text="${symptom.name}">Tên bệnh</td>
+						<td th:text="${symptom.id}"></td>
+						<td th:text="${symptom.name}"></td>
 						<td>
 							<a th:href="@{'/symptom_edit/' + ${symptom.id}}">Edit</a>
 							&nbsp;&nbsp;&nbsp; 

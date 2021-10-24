@@ -35,14 +35,12 @@ public class WeightController {
 	}
 
 	@RequestMapping(value = "/weight_save", method = RequestMethod.POST)
-	// đang lỗi ở đoạn không lấy được số double mà chỉ lấy được số int
 	public String saveWeight(@ModelAttribute("weight") Weight weight) {
 		weightService.save(weight);
 		return "redirect:/weight";
 	}
 
 	@RequestMapping("/weight_edit/{id}")
-//	controller này vẫn đang bị lỗi
 	public ModelAndView showEditWeightPage(@PathVariable(name = "id") String id) {
 		ModelAndView mav = new ModelAndView("weight/weight_edit");
 		Weight weight = weightService.get(Integer.valueOf(id));

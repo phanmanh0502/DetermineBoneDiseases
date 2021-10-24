@@ -24,7 +24,7 @@ public class DiseaseService {
 	}
 	
 	public Disease get(int id) {
-		return diseaseRepo.findById(id).get();
+		return diseaseRepo.findById(id).orElse(null);
 	}
 	
 	public void delete(int id) {
