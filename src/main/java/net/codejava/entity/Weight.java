@@ -46,8 +46,8 @@ public class Weight {
 		return weightOfSymptom;
 	}
 
-	public void setWeightOfSymptom(double weight) {
-		this.weightOfSymptom = weight;
+	public void setWeightOfSymptom(double weightOfSymptom) {
+		this.weightOfSymptom = weightOfSymptom;
 	}
 	
 	public Symptom getSymptom() {
@@ -82,28 +82,28 @@ public class Weight {
 		this.idDisease = idDisease;
 	}
 
-	public Weight(Integer id, double weight, Integer idSymptom, Symptom symptom, Integer idDisease, Disease disease) {
+	public Weight(Integer id, double weightOfSymptom, Integer idSymptom, Symptom symptom, Integer idDisease, Disease disease) {
 		super();
 		this.id = id;
-		this.weightOfSymptom = weight;
+		this.weightOfSymptom = weightOfSymptom;
 		this.idSymptom = idSymptom;
 		this.symptom = symptom;
 		this.idDisease = idDisease;
 		this.disease = disease;
 	}
 
-	public Weight(Integer id, double weight, Integer idSymptom, Integer idDisease) {
+	public Weight(Integer id, double weightOfSymptom, Integer idSymptom, Integer idDisease) {
 		super();
 		this.id = id;
-		this.weightOfSymptom = weight;
+		this.weightOfSymptom = weightOfSymptom;
 		this.idSymptom = idSymptom;
 		this.idDisease = idDisease;
 	}
 
-	public Weight(Integer id, double weight, Symptom symptom, Disease disease) {
+	public Weight(Integer id, double weightOfSymptom, Symptom symptom, Disease disease) {
 		super();
 		this.id = id;
-		this.weightOfSymptom = weight;
+		this.weightOfSymptom = weightOfSymptom;
 		this.symptom = symptom;
 		this.disease = disease;
 	}

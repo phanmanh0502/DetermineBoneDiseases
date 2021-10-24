@@ -64,6 +64,19 @@ public class Symptom {
 	public Symptom() {
 		super();
 	}
+	
+	public Symptom(Integer id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+	public Symptom(Integer id, String name, double similarity) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.similarity = similarity;
+	}
 
 	public Symptom(Integer id, String name, double similarity, List<Weight> listWeight) {
 		super();

@@ -77,6 +77,21 @@ public class Disease {
 		super();
 	}
 
+	public Disease(Integer id, String name, String cureMedthod) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.cureMedthod = cureMedthod;
+	}
+
+	public Disease(Integer id, String name, String cureMedthod, double percentage) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.cureMedthod = cureMedthod;
+		this.percentage = percentage;
+	}
+
 	public Disease(Integer id, String name, String cureMedthod, double percentage, List<Weight> listWeight) {
 		super();
 		this.id = id;
