@@ -23,9 +23,9 @@
 				</thead>
 				<tbody>
 					<tr th:each="disease : ${listDiseases}">
-						<td th:text="${disease.id}">ID trọng số</td>
-						<td th:text="${disease.name}">Tên bệnh</td>
-						<td th:text="${disease.cureMedthod}">Tên triệu chứng</td>
+						<td th:text="${disease.id}"></td>
+						<td th:text="${disease.name}"></td>
+						<td th:text="${disease.cureMedthod}"></td>
 						<td>
 							<a th:href="@{'/disease_edit/' + ${disease.id}}">Edit</a>
 							&nbsp;&nbsp;&nbsp; 

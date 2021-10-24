@@ -12,6 +12,31 @@
 		<div align="center">
 			<h3>Sửa bệnh và cách chữa trị</h3>
 			<br /> <br />
+			<form th:action="@{/disease_save}" th:object="${disease}"
+						method="post">
+
+				<table border="0" cellpadding="10">
+					<tr>
+						<td>ID bệnh:</td>
+						<td>
+							<input type="text" th:field="*{id}" readonly="readonly" />
+						</td>
+					</tr>
+					<tr>
+						<td>Tên bệnh:</td>
+						<td>
+							<input type="text" th:field="*{name}" />
+						</td>
+					</tr>
+					<tr>
+						<td>Phương pháp chữa bệnh:</td>
+						<td><input type="text" th:field="*{cureMedthod}" /></td>
+					</tr>
+					<tr>
+						<td colspan="2"><button type="submit">Save</button> </td>
+					</tr>
+				</table>
+			</form>
 		</div>
 	</div>
 </body>

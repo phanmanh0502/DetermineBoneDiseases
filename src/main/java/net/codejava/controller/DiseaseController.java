@@ -1,7 +1,9 @@
 package net.codejava.controller;
 
+import java.util.Collections;
 import java.util.List;
 
+import net.codejava.entity.Symptom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,7 +42,6 @@ public class DiseaseController {
 	}
 
 	@RequestMapping("/disease_edit/{id}")
-//	controller này vẫn đang bị lỗi
 	public ModelAndView showEditDiseasePage(@PathVariable(name = "id") String id) {
 		ModelAndView mav = new ModelAndView("disease/disease_edit");
 		Disease disease = diseaseService.get(Integer.valueOf(id));
@@ -51,17 +52,18 @@ public class DiseaseController {
 	@RequestMapping("/disease_delete/{id}")
 	public String deleteDisease(@PathVariable(name = "id") String id) {
 		diseaseService.delete(Integer.valueOf(id));
-		// phần xóa này Đức nhớ xóa cả các weight join với bảng này nhé
-		// phần này nó đang join nhau nên không thể xóa được
 		return "redirect:/disease";
 	}
 
-	// controller cho phần load trọng số nó join
-	// phần này ông trả về cho tôi 1 list weight join theo bảng này nhé
-	// đặt tên là listWeights
 	@RequestMapping("/disease_view_weight/{id}")
-	public String loadWeightByDisease(@PathVariable(name = "id") String id) {
-		// xử lý ở đây
-		return "redirect:/weight";
+	public ModelAndView loadWeightByDisease(@PathVariable(name = "id") String id) {
+		ModelAndView mav = new ModelAndView("weight/weight");
+		Disease disease = diseaseService.get(Integer.valueOf(id));
+		if (disease == null) {
+			mav.addObject("listWeights", Collections.emptyList());
+		} else {
+			mav.addObject("listWeights", disease.getListWeight());
+		}
+		return mav;
 	}
 }

@@ -2,6 +2,7 @@ package net.codejava.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +26,7 @@ public class Symptom {
 	@Transient
 	private double similarity; // độ tương đồng
 	
-	@OneToMany(mappedBy = "symptom")
+	@OneToMany(mappedBy = "symptom", cascade = CascadeType.ALL)
 	List<Weight> listWeight;
 	
 	public Integer getId() {

@@ -1,7 +1,10 @@
 package net.codejava.controller;
 
+import java.util.Collections;
 import java.util.List;
 
+import net.codejava.entity.Weight;
+import net.codejava.service.WeightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +21,9 @@ import net.codejava.service.SymptomService;
 public class SymptomController {
 	@Autowired
 	private SymptomService symptomService;
+
+	@Autowired
+	private WeightService weightService;
 
 	@RequestMapping("/symptom")
 	public String viewHomePage(Model model) {
@@ -40,7 +46,6 @@ public class SymptomController {
 	}
 
 	@RequestMapping("/symptom_edit/{id}")
-//	controller này vẫn đang bị lỗi
 	public ModelAndView showEditSymptomPage(@PathVariable(name = "id") String id) {
 		ModelAndView mav = new ModelAndView("symptom/symptom_edit");
 		Symptom symptom = symptomService.get(Integer.valueOf(id));
@@ -51,17 +56,18 @@ public class SymptomController {
 	@RequestMapping("/symptom_delete/{id}")
 	public String deleteSymptom(@PathVariable(name = "id") String id) {
 		symptomService.delete(Integer.valueOf(id));
-		// phần xóa này Đức nhớ xóa cả các weight join với bảng này nhé
-		// phần này nó đang join nhau nên không thể xóa được
 		return "redirect:/symptom";
 	}
 
-	// controller cho phần load trọng số nó join
-	// phần này ông trả về cho tôi 1 list weight join theo bảng này nhé
-	// đặt tên là listWeights
 	@RequestMapping("/symptom_view_weight/{id}")
-	public String loadWeightBySymptom(@PathVariable(name = "id") String id) {
-		// xử lý ở đây
-		return "redirect:/weight";
+	public ModelAndView loadWeightBySymptom(@PathVariable(name = "id") String id) {
+		ModelAndView mav = new ModelAndView("weight/weight");
+		Symptom symptom = symptomService.get(Integer.valueOf(id));
+		if (symptom == null) {
+			mav.addObject("listWeights", Collections.emptyList());
+		} else {
+			mav.addObject("listWeights", symptom.getListWeight());
+		}
+		return mav;
 	}
 }

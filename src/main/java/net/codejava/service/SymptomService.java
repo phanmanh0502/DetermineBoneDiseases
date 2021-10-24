@@ -24,7 +24,7 @@ public class SymptomService {
 	}
 	
 	public Symptom get(int id) {
-		return symptomRepo.findById(id).get();
+		return symptomRepo.findById(id).orElse(null);
 	}
 	
 	public void delete(int id) {
