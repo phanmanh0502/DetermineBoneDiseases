@@ -32,6 +32,9 @@ public class Disease {
 	@OneToMany(mappedBy = "disease", cascade = CascadeType.ALL)
 	private List<Weight> listWeight;
 	
+	@Transient
+	private double totalWeight; // tổng trọng số của bệnh
+	
 	public Integer getId() {
 		return id;
 	}
@@ -71,6 +74,14 @@ public class Disease {
 
 	public void setListWeight(List<Weight> listWeight) {
 		this.listWeight = listWeight;
+	}
+
+	public double getTotalWeight() {
+		return totalWeight;
+	}
+
+	public void setTotalWeight(double totalWeight) {
+		this.totalWeight = totalWeight;
 	}
 
 	public Disease() {
