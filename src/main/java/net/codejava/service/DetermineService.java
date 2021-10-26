@@ -45,8 +45,8 @@ public class DetermineService {
 				sum += weight.getWeightOfSymptom();
 			}
 			disease.setTotalWeight(sum);
-			double numerator = 0;
-			double percentage = 0;
+			double numerator = 0; // biến để tính toán tử số
+			double percentage = 0; // biến lưu trữ tỉ lệ phần trăm
 			for (Symptom symptom : listSymptom) {
 			}
 			disease.setPercentage(percentage);
