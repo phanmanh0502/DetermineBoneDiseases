@@ -1,6 +1,5 @@
 package net.codejava.service;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -41,7 +40,7 @@ public class DetermineService {
 		// tính toán phần trăm mắc bệnh
 		for (Disease disease : setDisease) {
 			double sum = 0;
-			for(Weight weight : disease.getListWeight()) {
+			for (Weight weight : disease.getListWeight()) {
 				sum += weight.getWeightOfSymptom();
 			}
 			disease.setTotalWeight(sum);
@@ -53,4 +52,6 @@ public class DetermineService {
 		}
 		return setDisease;
 	}
+
+
 }
