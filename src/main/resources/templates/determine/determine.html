@@ -1,19 +1,82 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/layout}">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+
 <head>
-<meta charset="UTF-8">
-<title>Determine Bone Diseases</title>
+	<meta charset="UTF-8">
+	<title>Determine Bone Diseases</title>
+	<style type="text/css">
+		.tableStyle {
+			border: 1px solid black;
+		}
+
+		input,
+		select {
+			font-size: 18px;
+		}
+	</style>
 </head>
+
 <body>
+
 	<div layout:fragment="content">
-		<div align="center">
-			<h3>Chẩn đoán ca bệnh</h3>
-<!-- 			cái list anh set lên không cần tên bệnh đâu nhé -->
-<!-- 			chỉ cần các thuộc tính khác để em tính thôi -->
+		<div style="width: 20%; float:left"></div>
+		<div   style="width: 80%; float:right">
+			<div style="height: 80px;"></div>
+			<form th:action="@{/addSymptomInView}" th:object="${Symptom}" method="POST">
+				<div class="input-group mb-3">
+					<span class="input-group-text" id="basic-addon3">
+						<h4>Tên Triệu Chứng : &nbsp;&nbsp;&nbsp;&nbsp;<h4>
+					</span>
+					<select th:field="*{id}">
+						<option value=""> -- </option>
+						<option th:each="symp : ${listSymptom}" th:value="${symp.id}" th:utext="${symp.name}" />
+					</select>
+				</div>
+				<div class="input-group mb-3">
+					<span class="input-group-text" id="basic-addon3">
+						<h4>Độ Tương Đồng(0-1) : <h4>
+					</span>
+					<input type="text" th:field="*{similarity}" class="form-control" id="basic-url"
+						aria-describedby="basic-addon3">
+				</div>
+				<button type="submit" class="btn btn-primary">Thêm triệu chứng</button>
+			</form>
+			<label>
+				<h3>Danh sách triệu chứng và độ tương đồng<h3>
+			</label>
+			<form form th:action="@{/diseasePrediction}" th:object="${listSymptomSession}" method="POST">
+				<table class="tableStyle">
+					<tr class="hearder">
+						<td width="200px" scope="col">Triệu Chứng</th>
+						<td width="200px" scope="col">Độ Tương Đồng</th>
+					</tr>
+					<tr th:each="symptom : ${listSymptomSession}">
+						</th>
+						<td scope="row" th:utext="${symptom.name}">...</td>
+						<td scope="row" th:utext="${symptom.similarity}">...</td>
+					</tr>
+				</table>
+				<br>
+				<button type="submit" class="btn btn-primary">dự đoán kết quả<br></button>
+			</form>
+			<label>
+				<h3>Chuẩn đoán<h3>
+			</label>
+			<table class="tableStyle">
+				<tr class="hearder">
+					<th width="200px">Tên bệnh</th>
+					<th width="200px">Tỉ lệ phần trăm</th>
+					<th width="200px">Phương pháp chữa trị</th>
+				</tr>
+				<tr th:each="disease : ${listDisease}">
+					<td scope="row" th:utext="${disease.name}">...</td>
+					<td scope="row" th:utext="${disease.percentage}">...</td>
+					<td scope="row" th:utext="${disease.cureMedthod}">...</td>
+				</tr>
+			</table>
 		</div>
 	</div>
 </body>
+
 </html>
