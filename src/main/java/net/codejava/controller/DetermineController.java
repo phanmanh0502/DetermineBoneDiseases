@@ -8,16 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import net.codejava.entity.Symptom;
+import net.codejava.model.SymptomModel;
 import net.codejava.service.DetermineService;
 import net.codejava.service.SymptomService;
 
 @Controller
-public class DetermineController {
+public class DetermineController implements WebMvcConfigurer {
 	@Autowired
 	private DetermineService determineService;
 	
@@ -33,9 +34,10 @@ public class DetermineController {
 	}
 	
 	@RequestMapping(value = { "/addSymptomInView" }, method = RequestMethod.POST)
-	public String addSymptomInView(Model model, @ModelAttribute("Symptom") Symptom symptom,  HttpServletRequest request) {
+	public String addSymptomInView(Model model, SymptomModel symptomModel,
+			HttpServletRequest request) {
 		initComboBox(model);
-		model.addAttribute("listSymptomSession", symptomService.addSymptomInView(symptom, request));
+		model.addAttribute("listSymptomSession", symptomService.addSymptomInView(model, symptomModel, request));
 		return "determine/determine";
 	}
 
@@ -43,14 +45,18 @@ public class DetermineController {
 	public String diseasePrediction(Model model,
 			HttpServletRequest request) {
 		initComboBox(model);
+
 		List<Symptom> listSymptomSession = (List<Symptom>) request.getSession().getAttribute("listSymptom");
 		model.addAttribute("listDisease", determineService.cbrAlg(listSymptomSession));
+		model.addAttribute("listSymptomSession", listSymptomSession);
 		return "determine/determine";
 	}
 
 	private void initComboBox(Model model) {
-		model.addAttribute("Symptom", new Symptom());
+		model.addAttribute("Symptom", new SymptomModel());
 		List<Symptom> listSymptomForComboBox = symptomService.listAll();
-		model.addAttribute("listSymptom", listSymptomForComboBox);
+		List<String> listSymptomName = listSymptomForComboBox.stream().map(sym -> sym.getName()).toList();
+		model.addAttribute("listSymptom", listSymptomName);
 	}
+
 }

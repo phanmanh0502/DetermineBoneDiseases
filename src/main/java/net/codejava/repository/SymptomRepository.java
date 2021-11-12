@@ -10,4 +10,7 @@ public interface SymptomRepository extends JpaRepository<Symptom, Integer> {
 
 	// find by id of Symptom
 	public Optional<Symptom> findById(Integer id);
+
+	// find by id of Symptom
+	public Optional<Symptom> findByName(String id);
 }
