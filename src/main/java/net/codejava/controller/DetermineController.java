@@ -2,6 +2,7 @@ package net.codejava.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -55,7 +56,7 @@ public class DetermineController implements WebMvcConfigurer {
 	private void initComboBox(Model model) {
 		model.addAttribute("Symptom", new SymptomModel());
 		List<Symptom> listSymptomForComboBox = symptomService.listAll();
-		List<String> listSymptomName = listSymptomForComboBox.stream().map(sym -> sym.getName()).toList();
+		List<String> listSymptomName = listSymptomForComboBox.stream().map(sym -> sym.getName()).collect(Collectors.toList());
 		model.addAttribute("listSymptom", listSymptomName);
 	}
 

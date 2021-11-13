@@ -30,4 +30,8 @@ public class DiseaseService {
 	public void delete(int id) {
 		diseaseRepo.deleteById(id);
 	}
+
+	public List<Disease> getAllByIdIn(List<Integer> listDiseaseId) {
+		return diseaseRepo.findAllById(listDiseaseId);
+	}
 }
