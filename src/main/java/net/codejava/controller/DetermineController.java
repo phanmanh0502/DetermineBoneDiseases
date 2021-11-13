@@ -2,6 +2,7 @@ package net.codejava.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,7 +22,7 @@ import net.codejava.service.SymptomService;
 public class DetermineController implements WebMvcConfigurer {
 	@Autowired
 	private DetermineService determineService;
-	
+
 	@Autowired
 	private SymptomService symptomService;
 
@@ -32,18 +33,16 @@ public class DetermineController implements WebMvcConfigurer {
 		request.getSession().setAttribute("listSymptom", listSymptomSession);
 		return "determine/determine";
 	}
-	
+
 	@RequestMapping(value = { "/addSymptomInView" }, method = RequestMethod.POST)
-	public String addSymptomInView(Model model, SymptomModel symptomModel,
-			HttpServletRequest request) {
+	public String addSymptomInView(Model model, SymptomModel symptomModel, HttpServletRequest request) {
 		initComboBox(model);
 		model.addAttribute("listSymptomSession", symptomService.addSymptomInView(model, symptomModel, request));
 		return "determine/determine";
 	}
 
 	@RequestMapping(value = { "/diseasePrediction" }, method = RequestMethod.POST)
-	public String diseasePrediction(Model model,
-			HttpServletRequest request) {
+	public String diseasePrediction(Model model, HttpServletRequest request) {
 		initComboBox(model);
 
 		List<Symptom> listSymptomSession = (List<Symptom>) request.getSession().getAttribute("listSymptom");
@@ -55,7 +54,8 @@ public class DetermineController implements WebMvcConfigurer {
 	private void initComboBox(Model model) {
 		model.addAttribute("Symptom", new SymptomModel());
 		List<Symptom> listSymptomForComboBox = symptomService.listAll();
-		List<String> listSymptomName = listSymptomForComboBox.stream().map(sym -> sym.getName()).toList();
+		List<String> listSymptomName = listSymptomForComboBox.stream().map(sym -> sym.getName())
+				.collect(Collectors.toList());
 		model.addAttribute("listSymptom", listSymptomName);
 	}
 
