@@ -51,13 +51,13 @@
 			</label>
 				<div class="input-group mb-3">
 					<div>
-						<label for="nameInput">Tên Triệu Chứng: &emsp; &ensp;</label><input id="nameInput" th:field="*{name}"  />
+						<label for="nameInput">Tên triệu chứng: &emsp; &ensp;</label><input id="nameInput" th:field="*{name}"  />
 						<span th:field="*{name}" id = "nameOutput" ></span>
 					</div>
 				</div>
 				<br>
 				<div>
-					<label>Độ Tương Đồng (0-1) : </label>
+					<label>Độ tương đồng (0-1) : </label>
 					<input type="text" id="similarity" name="similarity" th:field="*{similarity}" class="form-control"
 						aria-describedby="basic-addon3">
 					<div th:if="${similarityError}" th:utext="${similarityError}" style="color:red;font-style:italic;">
