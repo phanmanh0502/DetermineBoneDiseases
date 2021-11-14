@@ -9,16 +9,21 @@
 
 	<script type="text/javascript" src="js/main.js"></script>
 	<style type="text/css">
-		.tableStyle {
+		table, td, th {
 			border: 1px solid black;
+			padding-left: 5px;
 		}
 
-		input,
-		select {
-			font-size: 18px;
+		table {
+			border-collapse: collapse;
 		}
-		tr.hearder {
-			border: 1px solid black;
+		
+		 td, th {
+		 	font-weight: normal;
+		 }
+
+		input, select {
+			font-size: 18px;
 		}
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -42,43 +47,41 @@
 <body>
 
 	<div layout:fragment="content">
+		<div align="center">
+			<h2>Chẩn đoán bệnh xương</h2>
+		</div>
 		<div style="width: 20%; float:left"></div>
 		<div style="width: 80%; float:right">
-			<div style="height: 80px;"></div>
-			<form th:action="@{/addSymptomInView}" th:object="${Symptom}" method="POST" id="symptomForm">
-			<label>
-				<h2>Thêm triệu chứng<h2>
-			</label>
-				<div class="input-group mb-3">
-					<div>
-						<label for="nameInput">Tên triệu chứng: &emsp; &ensp;</label><input id="nameInput" th:field="*{name}"  />
+			<div>
+				<h2 style="color: red">Thêm triệu chứng<h2>
+				<form th:action="@{/addSymptomInView}" th:object="${Symptom}" method="POST" id="symptomForm">
+					<div class="input-group mb-3">
+						<label for="nameInput">Tên triệu chứng: &emsp; &ensp;</label>
+						<input id="nameInput" th:field="*{name}"  />
 						<span th:field="*{name}" id = "nameOutput" ></span>
 					</div>
-				</div>
-				<br>
-				<div>
-					<label>Độ tương đồng (0-1) : </label>
-					<input type="text" id="similarity" name="similarity" th:field="*{similarity}" class="form-control"
-						aria-describedby="basic-addon3">
-					<div th:if="${similarityError}" th:utext="${similarityError}" style="color:red;font-style:italic;">
-					</div>
-				</div><br>
-				<button type="submit" class="btn btn-primary">Thêm triệu chứng</button>
-			</form>
+					<br>
+					<div>
+						<label>Độ tương đồng (0-1) : </label>
+						<input type="text" id="similarity" name="similarity" th:field="*{similarity}" class="form-control"
+							aria-describedby="basic-addon3">
+						<div th:if="${similarityError}" th:utext="${similarityError}" style="color:red;font-style:italic;">
+						</div>
+					</div><br>
+					<button type="submit" class="btn btn-primary">Thêm triệu chứng</button>
+				</form>
+			</div>
 			<div th:if="${listSymptomSession!=null and !listSymptomSession.empty}">
-				<label>
-					<h4>Danh sách triệu chứng và độ tương đồng<h4>
-				</label>
+				<h2 style="color: red">Danh sách triệu chứng và độ tương đồng<h2>
 				<form form th:action="@{/diseasePrediction}" th:object="${listSymptomSession}" method="POST">
-					<table class="tableStyle">
+					<table>
 						<tr class="hearder">
-							<td width="200px" scope="col">Triệu Chứng</th>
-							<td width="200px" scope="col">Độ Tương Đồng</th>
+							<th width="400px" scope="col" align="left">Triệu chứng</th>
+							<th width="200px" scope="col" align="left">Độ tương đồng</th>
 						</tr>
 						<tr th:each="symptom : ${listSymptomSession}">
-							</th>
-							<td scope="row" th:utext="${symptom.name}">...</td>
-							<td scope="row" th:utext="${symptom.similarity}">...</td>
+							<td scope="row" th:text="${symptom.name}"></td>
+							<td scope="row" th:text="${symptom.similarity}"></td>
 						</tr>
 					</table>
 					<br>
@@ -86,18 +89,16 @@
 				</form>
 			</div>
 			<div th:if="${listDisease!=null and !listDisease.empty}">
-				<label>
-					<h4>Chẩn đoán<h4>
-				</label>
-				<table class="tableStyle">
+				<h2 style="color: red">Chẩn đoán<h2>
+				<table>
 					<tr class="hearder">
-						<th align = "left" width="200px">Tên bệnh</th>
-						<th align = "left" width="200px">Tỉ lệ (%)</th>
-						<th align = "left" width="250px">Phương pháp chữa trị</th>
+						<th width="400px" align="left">Tên bệnh</th>
+						<th width="200px" align="left">Tỉ lệ (%)</th>
+						<th>Phương pháp chữa trị</th>
 					</tr>
 					<tr th:each="disease : ${listDisease}">
-						<td scope="row" th:utext="${disease.name}">...</td>
-						<td scope="row" th:utext="${disease.percentage}">...</td>
+						<td width="500px" scope="row" th:text="${disease.name}"></td>
+						<td width="250px" scope="row" th:text="${disease.percentage}"></td>
 						<td scope="row" th:utext="${disease.cureMedthod}">...</td>
 					</tr>
 				</table>
