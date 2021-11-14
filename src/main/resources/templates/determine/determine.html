@@ -18,7 +18,7 @@
 			border-collapse: collapse;
 		}
 		
-		 td, th {
+		 td {
 		 	font-weight: normal;
 		 }
 
@@ -50,8 +50,8 @@
 		<div align="center">
 			<h2>Chẩn đoán bệnh xương</h2>
 		</div>
-		<div style="width: 20%; float:left"></div>
-		<div style="width: 80%; float:right">
+		<div style="width: 10%; float:left"></div>
+		<div style="width: 90%; float:right">
 			<div>
 				<h2 style="color: red">Thêm triệu chứng<h2>
 				<form th:action="@{/addSymptomInView}" th:object="${Symptom}" method="POST" id="symptomForm">
@@ -97,8 +97,8 @@
 						<th align="left">Phương pháp chữa trị</th>
 					</tr>
 					<tr th:each="disease : ${listDisease}">
-						<td width="500px" scope="row" th:text="${disease.name}"></td>
-						<td width="250px" scope="row" th:text="${disease.percentage}"></td>
+						<td scope="row" th:text="${disease.name}"></td>
+						<td scope="row" th:text="${disease.percentage}"></td>
 						<td scope="row" th:utext="${disease.cureMedthod}">...</td>
 					</tr>
 				</table>
