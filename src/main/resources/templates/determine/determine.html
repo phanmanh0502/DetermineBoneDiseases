@@ -65,24 +65,26 @@
 				</div><br>
 				<button type="submit" class="btn btn-primary">Thêm triệu chứng</button>
 			</form>
-			<label>
-				<h4>Danh sách triệu chứng và độ tương đồng<h4>
-			</label>
-			<form form th:action="@{/diseasePrediction}" th:object="${listSymptomSession}" method="POST">
-				<table class="tableStyle">
-					<tr class="hearder">
-						<td width="200px" scope="col">Triệu Chứng</th>
-						<td width="200px" scope="col">Độ Tương Đồng</th>
-					</tr>
-					<tr th:each="symptom : ${listSymptomSession}">
-						</th>
-						<td scope="row" th:utext="${symptom.name}">...</td>
-						<td scope="row" th:utext="${symptom.similarity}">...</td>
-					</tr>
-				</table>
-				<br>
-				<button type="submit" class="btn btn-primary">Dự đoán kết quả<br></button>
-			</form>
+			<div th:if="${listSymptomSession!=null and !listSymptomSession.empty}">
+				<label>
+					<h4>Danh sách triệu chứng và độ tương đồng<h4>
+				</label>
+				<form form th:action="@{/diseasePrediction}" th:object="${listSymptomSession}" method="POST">
+					<table class="tableStyle">
+						<tr class="hearder">
+							<td width="200px" scope="col">Triệu Chứng</th>
+							<td width="200px" scope="col">Độ Tương Đồng</th>
+						</tr>
+						<tr th:each="symptom : ${listSymptomSession}">
+							</th>
+							<td scope="row" th:utext="${symptom.name}">...</td>
+							<td scope="row" th:utext="${symptom.similarity}">...</td>
+						</tr>
+					</table>
+					<br>
+					<button type="submit" class="btn btn-primary">Dự đoán kết quả<br></button>
+				</form>
+			</div>
 			<div th:if="${listDisease!=null and !listDisease.empty}">
 				<label>
 					<h4>Chẩn đoán<h4>
