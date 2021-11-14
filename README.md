@@ -1,5 +1,3 @@
-## Đức làm Disease và Symptom
-## Anh Đại làm Determine( FE và controller)
-## Mạnh làm Weight và CBR
-## Mạnh Test: hiện tại em đang tạo các entity và dao lên master luôn
-## anh em chưa làm thì lúc nào làm create nhánh lại
+## Đức làm Disease và Symptom, code thuật toán Case Base Reasoning
+## Anh Đại làm Determine( Front End và controller)
+## Mạnh phân tích, thiết kế hệ thống, database, thuật toán, khung chương trình, code Weight

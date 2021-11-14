@@ -57,7 +57,7 @@
 				</div>
 				<br>
 				<div>
-					<label>Độ Tương Đồng (0-1) : </label>
+					<label>Độ Tương Đồng(0-1) : </label>
 					<input type="text" id="similarity" name="similarity" th:field="*{similarity}" class="form-control"
 						aria-describedby="basic-addon3">
 					<div th:if="${similarityError}" th:utext="${similarityError}" style="color:red;font-style:italic;">
@@ -90,7 +90,7 @@
 				<table class="tableStyle">
 					<tr class="hearder">
 						<th align = "left" width="200px">Tên bệnh</th>
-						<th align = "left" width="200px">Tỉ lệ (%)</th>
+						<th align = "left" width="200px">Tỉ lệ </th>
 						<th align = "left" width="250px">Phương pháp chữa trị</th>
 					</tr>
 					<tr th:each="disease : ${listDisease}">

@@ -1,9 +1,10 @@
 package net.codejava.service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.text.DecimalFormat;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,45 +13,43 @@ import org.springframework.transaction.annotation.Transactional;
 import net.codejava.entity.Disease;
 import net.codejava.entity.Symptom;
 import net.codejava.entity.Weight;
-import net.codejava.repository.DiseseRepository;
-import net.codejava.repository.SymptomRepository;
-import net.codejava.repository.WeightRepository;
 
 @Service
 @Transactional
 public class DetermineService {
 	@Autowired
-	private DiseseRepository diseaseRepo;
+	private DiseaseService diseaseService;
 
 	@Autowired
-	private WeightRepository weightRepo;
+	private WeightService weightService;
 
-	@Autowired
-	private SymptomRepository symptomRepo;
+	public List<Disease> cbrAlg(List<Symptom> listSymptom) {
+		Map<Integer, Symptom> mapSymptomIdAndSymptom = new HashMap<>();
+		listSymptom.forEach(symptom -> mapSymptomIdAndSymptom.put(symptom.getId(), symptom));
+		List<Integer> listDiseaseId = weightService.getListDiseaseIdBySymptomIdIn(mapSymptomIdAndSymptom.keySet());
+		List<Disease> listDisease = diseaseService.getAllByIdIn(listDiseaseId);
 
-	public Set<Disease> cbrAlg(List<Symptom> listSymptom) {
-		// khởi tạo 1 set bệnh
-		Set<Disease> setDisease = new HashSet<Disease>();
-		// tìm tất cả các bệnh bằng 2 vòng for
-		for (Symptom symptom : listSymptom) {
-			List<Weight> listWeight = symptom.getListWeight();
-			for (Weight weight : listWeight) {
-				setDisease.add(weight.getDisease());
+		return listDisease.stream().map(disease -> {
+			double percentage = 0;
+			List<Weight> weights = disease.getListWeight();
+			double sumWeightOfSymptom = weights.stream().mapToDouble(Weight::getWeightOfSymptom).sum();
+
+			for (Weight weight : weights) {
+				Integer symptomId = weight.getIdSymptom();
+				if (mapSymptomIdAndSymptom.containsKey(symptomId)) {
+					Symptom symptom = mapSymptomIdAndSymptom.get(symptomId);
+					percentage += weight.getWeightOfSymptom() * symptom.getSimilarity() / sumWeightOfSymptom;
+				}
 			}
-		}
-		// tính toán phần trăm mắc bệnh
-		for (Disease disease : setDisease) {
-			double sum = 0;
-			for(Weight weight : disease.getListWeight()) {
-				sum += weight.getWeightOfSymptom();
-			}
-			disease.setTotalWeight(sum);
-			double numerator = 0; // biến để tính toán tử số
-			double percentage = 0; // biến lưu trữ tỉ lệ phần trăm
-			for (Symptom symptom : listSymptom) {
-			}
+			percentage *= 100;
+		    DecimalFormat f = new DecimalFormat("##.00");
+		    percentage = Double.parseDouble(f.format(percentage));
 			disease.setPercentage(percentage);
-		}
-		return setDisease;
+			return disease;
+		}).sorted((o1, o2) -> {
+			if (o1.getPercentage() < o2.getPercentage()) return 1;
+			if (o1.getPercentage() > o2.getPercentage()) return -1;
+			return 0;
+		}).collect(Collectors.toList());
 	}
 }
