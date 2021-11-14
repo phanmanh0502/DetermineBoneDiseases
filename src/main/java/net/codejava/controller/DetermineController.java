@@ -52,7 +52,7 @@ public class DetermineController implements WebMvcConfigurer {
 	}
 
 	private void initComboBox(Model model) {
-		model.addAttribute("Symptom", new SymptomModel());
+		model.addAttribute("Symptom", new SymptomModel(null, null, 1.0));
 		List<Symptom> listSymptomForComboBox = symptomService.listAll();
 		List<String> listSymptomName = listSymptomForComboBox.stream().map(sym -> sym.getName())
 				.collect(Collectors.toList());

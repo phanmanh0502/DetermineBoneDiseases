@@ -1,5 +1,6 @@
 package net.codejava.service;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,7 +41,9 @@ public class DetermineService {
 					percentage += weight.getWeightOfSymptom() * symptom.getSimilarity() / sumWeightOfSymptom;
 				}
 			}
-
+			percentage *= 100;
+		    DecimalFormat f = new DecimalFormat("##.00");
+		    percentage = Double.parseDouble(f.format(percentage));
 			disease.setPercentage(percentage);
 			return disease;
 		}).sorted((o1, o2) -> {
