@@ -33,7 +33,7 @@ public class DetermineService {
 		listSymptom.forEach(symptom -> mapSymptomIdAndSymptom.put(symptom.getId(), symptom));
 		List<Integer> listDiseaseId = weightService.getListDiseaseIdBySymptomIdIn(mapSymptomIdAndSymptom.keySet());
 		List<Disease> listDisease = diseaseService.getAllByIdIn(listDiseaseId);
-		// Tính toán khả năng mắc mỗi bệnh
+		// Tính toán khả năng mắc mỗi bệnh dựa vào thuật toán cbr
 		return listDisease.stream().map(disease -> {
 			double percentage = 0;
 			List<Weight> weights = disease.getListWeight();
