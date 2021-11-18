@@ -23,12 +23,17 @@ public class DetermineService {
 	@Autowired
 	private WeightService weightService;
 
+	/**
+	 * Function chẩn đoán bệnh
+	 * param: listSymptom danh sách triệu chứng và độ tương đồng, return: listDisease danh sách bệnh và phần trăm mắc mỗi bệnh
+	 */
 	public List<Disease> cbrAlg(List<Symptom> listSymptom) {
+		// Truy vấn list bệnh có khả năng mắc trong các triệu chứng đã nhập
 		Map<Integer, Symptom> mapSymptomIdAndSymptom = new HashMap<>();
 		listSymptom.forEach(symptom -> mapSymptomIdAndSymptom.put(symptom.getId(), symptom));
 		List<Integer> listDiseaseId = weightService.getListDiseaseIdBySymptomIdIn(mapSymptomIdAndSymptom.keySet());
 		List<Disease> listDisease = diseaseService.getAllByIdIn(listDiseaseId);
-
+		// Tính toán khả năng mắc mỗi bệnh
 		return listDisease.stream().map(disease -> {
 			double percentage = 0;
 			List<Weight> weights = disease.getListWeight();
@@ -42,13 +47,16 @@ public class DetermineService {
 				}
 			}
 			percentage *= 100;
-		    DecimalFormat f = new DecimalFormat("##.00");
-		    percentage = Double.parseDouble(f.format(percentage));
+			DecimalFormat f = new DecimalFormat("##.00");
+			percentage = Double.parseDouble(f.format(percentage));
 			disease.setPercentage(percentage);
 			return disease;
+		// Sắp xếp phần trăm mắc bệnh
 		}).sorted((o1, o2) -> {
-			if (o1.getPercentage() < o2.getPercentage()) return 1;
-			if (o1.getPercentage() > o2.getPercentage()) return -1;
+			if (o1.getPercentage() < o2.getPercentage())
+				return 1;
+			if (o1.getPercentage() > o2.getPercentage())
+				return -1;
 			return 0;
 		}).collect(Collectors.toList());
 	}
