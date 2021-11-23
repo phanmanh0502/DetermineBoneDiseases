@@ -28,7 +28,7 @@ public class DetermineController implements WebMvcConfigurer {
 
 	@RequestMapping(value = { "/determine" }, method = RequestMethod.GET)
 	public String viewHomePage(Model model, HttpServletRequest request) {
-		initComboBox(model);
+		initComboBox(model, null);
 		List<Symptom> listSymptomSession = new ArrayList<>();
 		request.getSession().setAttribute("listSymptom", listSymptomSession);
 		return "determine/determine";
@@ -36,14 +36,14 @@ public class DetermineController implements WebMvcConfigurer {
 
 	@RequestMapping(value = { "/addSymptomInView" }, method = RequestMethod.POST)
 	public String addSymptomInView(Model model, SymptomModel symptomModel, HttpServletRequest request) {
-		initComboBox(model);
+		initComboBox(model, symptomModel);
 		model.addAttribute("listSymptomSession", symptomService.addSymptomInView(model, symptomModel, request));
 		return "determine/determine";
 	}
 
 	@RequestMapping(value = { "/diseasePrediction" }, method = RequestMethod.POST)
 	public String diseasePrediction(Model model, HttpServletRequest request) {
-		initComboBox(model);
+		initComboBox(model, null);
 
 		List<Symptom> listSymptomSession = (List<Symptom>) request.getSession().getAttribute("listSymptom");
 		model.addAttribute("listDisease", determineService.cbrAlg(listSymptomSession));
@@ -51,8 +51,12 @@ public class DetermineController implements WebMvcConfigurer {
 		return "determine/determine";
 	}
 
-	private void initComboBox(Model model) {
-		model.addAttribute("Symptom", new SymptomModel(null, null, 1.0));
+	private void initComboBox(Model model, SymptomModel symptomModel) {
+		if (symptomModel == null) {
+			model.addAttribute("Symptom", new SymptomModel(null, null, 1.0));
+		} else {
+			model.addAttribute("Symptom", new SymptomModel(null, symptomModel.getName(), symptomModel.getSimilarity()));
+		}
 		List<Symptom> listSymptomForComboBox = symptomService.listAll();
 		List<String> listSymptomName = listSymptomForComboBox.stream().map(sym -> sym.getName())
 				.collect(Collectors.toList());
