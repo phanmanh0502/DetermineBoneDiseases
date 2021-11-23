@@ -68,7 +68,7 @@ public class SymptomService {
 		String messageError = null;
 		if (!StringUtils.hasText(symptom.getName())) {
 			messageError = "Vui lòng chọn 1 triệu chứng";
-			model.addAttribute("nameSymptom", messageError);
+			model.addAttribute("nameSymptomError", messageError);
 		} else {
 			Optional<Symptom> symptomExits = symptomRepo.findByName(symptom.getName());
 			if (!symptomExits.isPresent()) {
