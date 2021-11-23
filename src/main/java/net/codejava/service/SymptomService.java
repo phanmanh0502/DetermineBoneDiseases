@@ -66,7 +66,7 @@ public class SymptomService {
 
 	private boolean validateSymtom(Model model, SymptomModel symptom, HttpServletRequest request) {
 		String messageError = null;
-		if (StringUtils.hasText(symptom.getName())) {
+		if (!StringUtils.hasText(symptom.getName())) {
 			messageError = "Vui lòng chọn 1 triệu chứng";
 			model.addAttribute("nameSymptom", messageError);
 		}
