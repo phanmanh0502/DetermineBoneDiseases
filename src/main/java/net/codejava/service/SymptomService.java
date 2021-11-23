@@ -69,13 +69,13 @@ public class SymptomService {
 		if (!StringUtils.hasText(symptom.getName())) {
 			messageError = "Vui lòng chọn 1 triệu chứng";
 			model.addAttribute("nameSymptom", messageError);
+		} else {
+			Optional<Symptom> symptomExits = symptomRepo.findByName(symptom.getName());
+			if (!symptomExits.isPresent()) {
+				messageError = "Triệu chứng không tồn tại";
+				model.addAttribute("nameSymptomError", messageError);
+			}
 		}
-		Optional<Symptom> symptomExits = symptomRepo.findByName(symptom.getName());
-		if (!symptomExits.isPresent()) {
-			messageError = "Triệu chứng không tồn tại";
-			model.addAttribute("nameSymptomError", messageError);
-		}
-
 		if (symptom.getSimilarity() == 0 || symptom.getSimilarity() > 1) {
 			messageError = "Vui lòng nhập triệu chứng trong khoảng từ 0 - 1 ";
 			model.addAttribute("similarityError", messageError);
