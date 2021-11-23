@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 
 import net.codejava.entity.Symptom;
 import net.codejava.model.SymptomModel;
@@ -65,7 +66,7 @@ public class SymptomService {
 
 	private boolean validateSymtom(Model model, SymptomModel symptom, HttpServletRequest request) {
 		String messageError = null;
-		if (symptom == null) {
+		if (StringUtils.hasText(symptom.getName())) {
 			messageError = "Vui lòng chọn 1 triệu chứng";
 			model.addAttribute("nameSymptom", messageError);
 		}
