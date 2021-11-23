@@ -59,18 +59,20 @@
 						<label for="nameInput">Tên triệu chứng: &emsp; &ensp;</label>
 						<input id="nameInput" th:field="*{name}"  />
 						<span th:field="*{name}" id = "nameOutput" ></span>
+						<span th:if="${nameSymptomError}" th:utext="${nameSymptomError}" style="color:red;font-style:italic;">
 					</div>
 					<br>
 					<div>
 						<label>Độ tương đồng (0-1) : </label>
 						<input type="text" id="similarity" name="similarity" th:field="*{similarity}" class="form-control"
 							aria-describedby="basic-addon3">
-						<div th:if="${similarityError}" th:utext="${similarityError}" style="color:red;font-style:italic;">
-						</div>
+						<span th:if="${similarityError}" th:utext="${similarityError}" style="color:red;font-style:italic;">
+						
 					</div><br>
 					<button type="submit" class="btn btn-primary">Thêm triệu chứng</button>
 				</form>
 			</div>
+			<br>
 			<div th:if="${listSymptomSession!=null and !listSymptomSession.empty}">
 				<h2 style="color: red">Danh sách triệu chứng và độ tương đồng<h2>
 				<form form th:action="@{/diseasePrediction}" th:object="${listSymptomSession}" method="POST">
