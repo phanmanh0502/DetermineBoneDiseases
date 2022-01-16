@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.20, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
 --
 -- Host: localhost    Database: determine_bone_diseases
 -- ------------------------------------------------------
--- Server version	8.0.20
+-- Server version	8.0.26
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -36,7 +36,7 @@ CREATE TABLE `disease` (
 
 LOCK TABLES `disease` WRITE;
 /*!40000 ALTER TABLE `disease` DISABLE KEYS */;
-INSERT INTO `disease` VALUES (1,'Viêm khớp dạng thấp','Điều trị'),(2,'Viêm khớp cột sống','Điều trị'),(3,'Gout cấp','Điều trị'),(4,'Gout mãn','Điều trị'),(5,'Loãng xương','Điều trị'),(6,'Thoái hóa khớp','Điều trị'),(7,'Lupus','Điều trị');
+INSERT INTO `disease` VALUES (1,'Viêm khớp dạng thấp','Dùng thuốc, nghỉ ngơi, tập thể dục và phẫu thuật nhằm khắc phục tổn thương khớp'),(2,'Viêm khớp cột sống','Điều trị bằng nội khoa, vật lý trị liệu, phẫu thuật'),(3,'Gout cấp','Điều trị nội khoa, điều trị ngoại khoa'),(4,'Gout mãn','Sử dụng thuốc, thiết lập và duy trì chế độ ăn uống phù hợp, can thiệp và phẫu thuật'),(5,'Loãng xương','Điều trị bằng chế độ ăn uồng, chế độ sinh hoạt, tập thể dục ngoài trời'),(6,'Thoái hóa khớp','Phẫu thuật nội soi làm sạch, phẫu thuật nội soi tạo tổn thương dưới sụn, ghép tế bào sụn tự thân, ghép xương sụn tự thân hoặc đồng loại'),(7,'Lupus','Thuốc ức chế miễn dịch, Glucocorticoid, thuốc chống sốt rét chloroquin');
 /*!40000 ALTER TABLE `disease` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -60,7 +60,7 @@ CREATE TABLE `symptom` (
 
 LOCK TABLES `symptom` WRITE;
 /*!40000 ALTER TABLE `symptom` DISABLE KEYS */;
-INSERT INTO `symptom` VALUES (1,'Khởi phát từ từ (55-65%): sưng khớp'),(2,'Thường ảnh hưởng tại các khớp nhỏ'),(3,'Cứng khớp buổi sáng (≥30-45ph)'),(4,'Mệt mỏi, chán ăn'),(5,'Hiếm khi triệu chứng tại khớp mất hoàn toàn'),(6,'Khởi phát trước 45t'),(7,'Đau hơn 3 tháng'),(8,'Đau lưng vùng thấp, đau mông'),(9,'Thức giấc do đau lưng, thường từ nửa đêm'),(10,'Cứng lưng buổi sáng ít nhất 30ph'),(11,'Khởi phát âm ỉ'),(12,'Cải thiện với vận động, không cải thiện khi'),(13,'Đáp ứng với NSAIDs'),(14,'Đau ngực'),(15,'Đau mông'),(16,'Viêm màng bồ đào trước cấp tính'),(17,'Viêm màng hoạt dịch (thường chi dưới, ko đối xứng)'),(18,'Viêm điểm bám gân (gân gót, cân gan chân)'),(19,'Tiền căn gia đình'),(20,'Viêm ruột mạn tính'),(21,'Vẩy nến'),(22,'Vị trí: đa số bắt đầu ở khớp bàn ngón chân I hoặc khớp cổ chân'),(23,'Tính chất của cơn viêm khớp cấp: đột ngột đau dữ dội kèm sưng tấy, nóng, đỏ, sung huyết…ở 1 khớp, không đối xứng, thường xảy ra về đêm'),(24,'Triệu chứng viêm khớp tăng tối đa trong 12-24 giờ và kéo dài từ vài ngày đến vài tuần rồi có thể tự khỏi hoàn toàn'),(25,'Tophy (+)'),(26,'Các đợt viêm khớp diễn ra thường xuyên và kéo dài hơn'),(27,'Giữa các đợt viêm, các khớp vẫn có thể có tình trạng viêm nhẹ'),(28,'Thường không có biểu hiện gì cho đến khi có biến chứng gãy xương'),(29,'Biến chứng LX: đau kéo dài do chèn ép TK, gù vẹo CS, biến dạng lồng ngực, gãy xương cổ tay, CXĐ, xẹp đốt sống, giảm khả năng VĐ'),(30,'Thường ảnh hưởng: gối, bàn tay, háng, cột sống'),(31,'Đau khớp, cột sống, tăng khi vận động, giảm khi nghỉ ngơi, cứng khớp buổi sáng <30ph'),(32,'Phì đại xƣơng, kêu lụp cụp khi khám, giảm ROM'),(33,'± tràn dịch'),(34,'Là bệnh lý hệ thống tổn thương nhiều cơ quan'),(35,'Tổn thƣơng nội tạng, ban da, loét miệng, viêm đa khớp, nhạy cảm ánh sáng và viêm thanh mạc'),(36,'Biểu hiện lâm sàng đa dạng, tiên lượng bệnh thay đổi nhiều');
+INSERT INTO `symptom` VALUES (1,'Khởi phát từ từ (55-65%): sưng khớp'),(2,'Thường ảnh hưởng tại các khớp nhỏ'),(3,'Cứng khớp buổi sáng (≥30-45ph)'),(4,'Mệt mỏi, chán ăn'),(5,'Hiếm khi triệu chứng tại khớp mất hoàn toàn'),(6,'Khởi phát trước 45t'),(7,'Đau hơn 3 tháng'),(8,'Đau lưng vùng thấp, đau mông'),(9,'Thức giấc do đau lưng, thường từ nửa đêm'),(10,'Cứng lưng buổi sáng ít nhất 30ph'),(11,'Khởi phát âm ỉ'),(12,'Cải thiện với vận động, không cải thiện khi'),(13,'Đáp ứng với NSAIDs'),(14,'Đau ngực'),(15,'Đau mông'),(16,'Viêm màng bồ đào trước cấp tính'),(17,'Viêm màng hoạt dịch (thường chi dưới, ko đối xứng)'),(18,'Viêm điểm bám gân (gân gót, cân gan chân)'),(19,'Tiền căn gia đình'),(20,'Viêm ruột mạn tính'),(21,'Vẩy nến'),(22,'Vị trí: đa số bắt đầu ở khớp bàn ngón chân I hoặc khớp cổ chân'),(23,'Tính chất của cơn viêm khớp cấp: đột ngột đau dữ dội kèm sưng tấy, nóng, đỏ, sung huyết…ở 1 khớp, không đối xứng, thường xảy ra về đêm'),(24,'Triệu chứng viêm khớp tăng tối đa trong 12-24 giờ và kéo dài từ vài ngày đến vài tuần rồi có thể tự khỏi hoàn toàn'),(25,'Tophy (+)'),(26,'Các đợt viêm khớp diễn ra thường xuyên và kéo dài hơn'),(27,'Giữa các đợt viêm, các khớp vẫn có thể có tình trạng viêm nhẹ'),(28,'Thường không có biểu hiện gì cho đến khi có biến chứng gãy xương'),(29,'Biến chứng LX: đau kéo dài do chèn ép TK, gù vẹo CS, biến dạng lồng ngực, gãy xương cổ tay, CXĐ, xẹp đốt sống, giảm khả năng VĐ'),(30,'Thường ảnh hưởng: gối, bàn tay, háng, cột sống'),(31,'Đau khớp, cột sống, tăng khi vận động, giảm khi nghỉ ngơi, cứng khớp buổi sáng <30ph'),(32,'Phì đại xương, kêu lụp cụp khi khám, giảm ROM'),(33,'± tràn dịch'),(34,'Là bệnh lý hệ thống tổn thương nhiều cơ quan'),(35,'Tổn thương nội tạng, ban da, loét miệng, viêm đa khớp, nhạy cảm ánh sáng và viêm thanh mạc'),(36,'Biểu hiện lâm sàng đa dạng, tiên lượng bệnh thay đổi nhiều');
 /*!40000 ALTER TABLE `symptom` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -103,4 +103,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-21 22:55:29
+-- Dump completed on 2022-01-16  7:05:29
